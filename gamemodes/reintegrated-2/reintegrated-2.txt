@@ -1,0 +1,13 @@
+"reintegrated-2"
+{
+	"base"		"base"
+	"title"		"Reintegrated 2"
+	"maps"		"^rein_"
+	"menusystem"	"1"
+
+	"settings"
+	{
+
+	}
+
+}
