@@ -52,6 +52,6 @@ function GM:Think()
 			surface.PlaySound("reintegrated/money_out.wav")
 		end
 		lastMoney = LocalPlayer():GetNetworkedInt("money")
-		deltaMonDis = 1000
+		deltaMonDis = 500
 	end
 end
