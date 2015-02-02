@@ -1,6 +1,6 @@
 ENT.Type = "anim"
 
-ENT.PrintName		= "Reintegrated Spawn"
+ENT.PrintName		= "Reintegrated Basic Shop"
 ENT.Author			= ""
 ENT.Contact			= ""
 ENT.Purpose			= ""

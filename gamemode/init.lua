@@ -11,7 +11,9 @@ function GM:PlayerSpawn(ply)
 	--ply:SetPos(Vector(0,0,-100000))
 	
 end
-
+function GM:PlayerInitialSpawn(ply)
+	ply:SetNetworkedInt("money", 1000)
+end
 -- Choose the model for hands according to their player model.
 function GM:PlayerSetHandsModel( ply, ent )
 
@@ -24,3 +26,9 @@ function GM:PlayerSetHandsModel( ply, ent )
 	end
 
 end
+
+function setMoneyCommand(ply, command, args)
+	if #args < 1 then return end
+	ply:SetNetworkedInt("money", args[1])
+end
+concommand.Add("re_setmoney", setMoneyCommand)
