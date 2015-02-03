@@ -37,7 +37,39 @@ function GM:Initialize()
 	deltaMonDis = 0
 	deltaMon = 0
 end
+function shopMenu()
+        local Frame = vgui.Create( "DFrame" )
+	Frame:SetPos( 5, 5 ) 
+	Frame:SetSize( 300, 150 ) 
+	Frame:SetTitle( "Shop Menu" ) 
+	Frame:SetVisible( true ) 
+	Frame:SetDraggable( true ) 
+	Frame:ShowCloseButton( true )
+	Frame:MakePopup()
+	
+	local Scroll = vgui.Create( "DScrollPanel", Frame ) //Create the Scroll panel
+	Scroll:SetSize( 355, 200 )
+	Scroll:SetPos( 10, 30 )
 
+	local List = vgui.Create( "DIconLayout", Scroll )
+	List:SetSize( 340, 200 )
+	List:SetPos( 0, 0 )
+	List:SetSpaceY( 5 ) //Sets the space in between the panels on the X Axis by 5
+	List:SetSpaceX( 5 ) //Sets the space in between the panels on the Y Axis by 5
+
+	for id, item in pairs(shopitems) do //Make a loop to create a bunch of panels inside of the DIconLayout
+		local ListItem = List:Add( "DPanel" ) //Add DPanel to the DIconLayout
+		ListItem:SetSize( 120, 40 )
+		local DButton = vgui.Create( "DButton" )
+		DButton:SetPos( 0, 0 )
+		DButton:SetText( item.name )
+		DButton:SetParent(ListItem)
+		DButton:SetSize( 120, 40 )
+		DButton.DoClick = function()
+			RunConsoleCommand("re_buy", id)
+		end
+	end
+end
 function GM:Think()
 	if deltaMonDis > -32 then deltaMonDis = deltaMonDis - 1 end
 	if lastMoney != LocalPlayer():GetNetworkedInt("money") then
@@ -55,3 +87,6 @@ function GM:Think()
 		deltaMonDis = 500
 	end
 end
+
+
+usermessage.Hook( "ShopMenu", shopMenu );

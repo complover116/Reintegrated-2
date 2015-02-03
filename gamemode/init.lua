@@ -57,7 +57,7 @@ concommand.Add("re_getmypos", getPosCommand)
 
 function buyCommand(ply, command, args)
 	if #args < 1 then return end
-	bestD = 20
+	bestD = 200
 	for _, ent in pairs(ents.FindByClass("re_shop")) do
 		if ent:GetPos():Distance(ply:GetPos()) < bestD then
 			shop = ent

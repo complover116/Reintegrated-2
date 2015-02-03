@@ -19,7 +19,8 @@ function ENT:Initialize()
 end
  
 function ENT:Use( activator, caller )
-	self:EmitSound("reintegrated/purchase.wav")
+	umsg.Start( "ShopMenu" );
+	umsg.End();
     return
 end
  
@@ -34,7 +35,7 @@ function ENT:Think()
 			vWorldPos=vWorldPos+self:GetPos()
 			ent:SetPos(vWorldPos)
 			ent:Spawn()
-			vel = Vector(500,0,0)
+			vel = Vector(300,0,0)
 			vel:Rotate(self:GetAngles())
 			ent:GetPhysicsObject():SetVelocity(vel)
 			table.remove(self.orderlist, 1)
