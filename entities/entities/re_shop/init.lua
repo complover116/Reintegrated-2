@@ -39,7 +39,7 @@ function ENT:Think()
 			vel:Rotate(self:GetAngles())
 			ent:GetPhysicsObject():SetVelocity(vel)
 			table.remove(self.orderlist, 1)
-			self.cooldown = 2
+			self.cooldown = 1
 			self:EmitSound("reintegrated/purchase.wav")
 		end
 	end

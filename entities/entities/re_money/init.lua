@@ -9,8 +9,9 @@ function ENT:Initialize()
 	self:PhysicsInit( SOLID_VPHYSICS )      -- Make us work with physics,
 	self:SetMoveType( MOVETYPE_VPHYSICS )   -- after all, gmod is a physics
 	self:SetSolid( SOLID_VPHYSICS )         -- Toolbox
+	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(0,255,0)
-	self.amount = 100
+	self.amount = 25
     local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
