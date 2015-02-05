@@ -8,6 +8,10 @@ function GM:PlayerSpawn(ply)
 	ply:SetPlayerColor(Vector(1,1,1))
 	ply:Give("weapon_physcannon")
 	ply:Give("weapon_crowbar")
+	ply:Give("re_holdingstuff")
+	ply:SetNetworkedInt("itemitem_battery", 0)
+	ply:SetNetworkedInt("itemitem_healthvial", 0)
+	ply:SetupHands()
 	--ply:SetPos(Vector(0,0,-100000))
 	
 end
@@ -30,6 +34,7 @@ function GM:Initialize()
 end
 function GM:PlayerInitialSpawn(ply)
 	ply:SetNetworkedInt("money", 1000)
+	
 end
 -- Choose the model for hands according to their player model.
 function GM:PlayerSetHandsModel( ply, ent )
@@ -54,6 +59,14 @@ function getPosCommand(ply, command, args)
 	print(ply:GetPos())
 end
 concommand.Add("re_getmypos", getPosCommand)
+
+function getModelCommand(ply, command, args)
+	traceres = ply:GetEyeTrace()
+	if !traceres.HitWorld then
+		print(traceres.Entity:GetModel())
+	end
+end
+concommand.Add("re_getmodel", getModelCommand)
 
 function buyCommand(ply, command, args)
 	if #args < 1 then return end
