@@ -3,6 +3,12 @@ AddCSLuaFile( "shared.lua" )
 
 include( "shared.lua" )
 
+resource.AddFile("/sound/reintegrated/money_in.wav")
+resource.AddFile("/sound/reintegrated/money_out.wav")
+resource.AddFile("/sound/reintegrated/purchase.wav")
+
+worldparams = {}
+worldparams.exists = false
 function GM:PlayerSpawn(ply)
 	ply:SetModel("models/player/kleiner.mdl")
 	ply:SetPlayerColor(Vector(1,1,1))
@@ -11,15 +17,38 @@ function GM:PlayerSpawn(ply)
 	ply:Give("re_holdingstuff")
 	ply:SetNetworkedInt("itemitem_battery", 0)
 	ply:SetNetworkedInt("itemitem_healthvial", 0)
+	ply:AllowFlashlight( true )
 	ply:SetupHands()
 	--ply:SetPos(Vector(0,0,-100000))
 	
 end
-function GM:Initialize()
+function GM:InitPostEntity()
 	if file.Exists("lua/rein_mapdata/"..game.GetMap()..".txt", "GAME") then
 		print("Located map data file fot "..game.GetMap())
+		worldparams.exists = true
 		data = file.Read("lua/rein_mapdata/"..game.GetMap()..".txt", "GAME")
-		entities = string.Explode("\n", data)
+		_, start = string.find(data, "PARAMS")
+		stop = string.find(data, "ENDPARAMS")
+		paramdata  = string.sub(data, start+3, stop-2)
+		print("PARAMETERS:"..start..":"..stop)
+		print(paramdata)
+		parameters = string.Explode("\n", paramdata)
+		for _, paramstr in pairs(parameters) do
+			paramdata = string.Explode("=", paramstr)
+			worldparams[paramdata[1]] = paramdata[2]
+		end
+		if worldparams.custom_spawns then
+			for k, v in pairs(ents.FindByClass("info_player_start")) do
+				v:Remove()
+			end
+		end
+		
+		_, start = string.find(data, "ENTS")
+		stop = string.find(data, "ENDENTS")
+		entdata  = string.sub(data, start + 3, stop - 2)
+		print("ENTITIES:")
+		print(entdata)
+		entities = string.Explode("\n", entdata)
 		for _, entstr in pairs(entities) do
 			entdata = string.Explode(":", entstr)
 			ent = ents.Create(entdata[1])

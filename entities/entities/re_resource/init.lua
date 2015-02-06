@@ -24,7 +24,7 @@ function ENT:Use( activator, caller )
 end
  
 function ENT:Think()
-    if self.time < 60 then
+    if self.time < 15 then
 		self.time = self.time + 1
 	else
 		self.time = 0

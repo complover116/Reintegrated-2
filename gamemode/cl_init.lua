@@ -39,8 +39,8 @@ function GM:Initialize()
 end
 function shopMenu()
         local Frame = vgui.Create( "DFrame" )
-	Frame:SetPos( ScrW()/2 - 150, ScrH()/2 - 75 ) 
-	Frame:SetSize( 300, 150 ) 
+	Frame:SetPos( ScrW()/2 - 150, ScrH()/2 - 300 ) 
+	Frame:SetSize( 300, 600 ) 
 	Frame:SetTitle( "Shop Menu" ) 
 	Frame:SetVisible( true ) 
 	Frame:SetDraggable( true ) 
@@ -48,11 +48,11 @@ function shopMenu()
 	Frame:MakePopup()
 	
 	local Scroll = vgui.Create( "DScrollPanel", Frame ) //Create the Scroll panel
-	Scroll:SetSize( 355, 200 )
+	Scroll:SetSize( 280, 570 )
 	Scroll:SetPos( 10, 30 )
 
 	local List = vgui.Create( "DIconLayout", Scroll )
-	List:SetSize( 340, 200 )
+	List:SetSize( 300, 200 )
 	List:SetPos( 0, 0 )
 	List:SetSpaceY( 5 ) //Sets the space in between the panels on the X Axis by 5
 	List:SetSpaceX( 5 ) //Sets the space in between the panels on the Y Axis by 5

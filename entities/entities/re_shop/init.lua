@@ -19,7 +19,7 @@ function ENT:Initialize()
 end
  
 function ENT:Use( activator, caller )
-	umsg.Start( "ShopMenu" );
+	umsg.Start( "ShopMenu", activator );
 	umsg.End();
     return
 end

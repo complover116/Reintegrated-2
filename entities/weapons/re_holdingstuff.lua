@@ -88,9 +88,11 @@ function SWEP:PrimaryAttack()
 		end
 		self.Weapon:SendWeaponAnim(ACT_VM_THROW)
 		self.busy = true
+		if SERVER then
 		umsg.Start("resetmodel")
 		umsg.Entity(self)
 		umsg.End()
+		end
 		timer.Simple(0.4, function()
 			self.busy = false
 			self.Weapon:SendWeaponAnim(ACT_VM_DRAW)
@@ -100,9 +102,11 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:Reload()
-	umsg.Start("inventory")
+if SERVER then
+	umsg.Start("inventory", self.Owner)
 	umsg.Entity(self)
 	umsg.End()
+	end
 end
 --
 -- Called when the rightmouse button is pressed
