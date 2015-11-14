@@ -1,5 +1,5 @@
 # Reintegrated-2
-Reintegrated is now back!
+This is NOT being developed anymore
 
 #####Sound licensing
 
