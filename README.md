@@ -1,7 +1,7 @@
 # Reintegrated-2
 This is NOT being developed anymore
 
-#####Sound licensing
+##### Sound licensing
 
 This gamemode uses several sounds from freesound.org:
 
